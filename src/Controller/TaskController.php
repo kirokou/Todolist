@@ -7,8 +7,11 @@ use App\Form\TaskType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+/**
+ * @Security("is_granted('ROLE_USER')", statusCode=404)
+ */
 class TaskController extends AbstractController
 {
     /**
@@ -89,6 +92,13 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task)
     {
+        if ($task->getAuthor() === 'anonyme')
+        {
+            $this->denyAccessUnlessGranted('TASK_DELETE_ANONYME', $task, $message='Vous devez être admin.');
+        } else {
+               $this->denyAccessUnlessGranted('TASK_DELETE', $task, $message='Vous ne disposez pas des droits de suppression.');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();
