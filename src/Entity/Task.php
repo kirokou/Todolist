@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
 /**
  * @ORM\Entity
  * @ORM\Table
+ * @ORM\HasLifecycleCallbacks
  */
 class Task
 {
@@ -39,6 +41,11 @@ class Task
      * @ORM\Column(type="boolean")
      */
     private $isDone;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasks")
+     */
+    private $author;
 
     public function __construct()
     {
@@ -90,4 +97,17 @@ class Task
     {
         $this->isDone = $flag;
     }
+
+    public function getAuthor()
+    {
+        return $this->author !== NULL ? $this->author: "anonyme";
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
 }
