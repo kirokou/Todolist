@@ -4,4 +4,6 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1bc6081ee8a7a35f76fe/test_coverage)](https://codeclimate.com/github/kirokou/Todolist/test_coverage)
 
+[![Build Status](https://travis-ci.com/kirokou/Todolist.svg?branch=master)](https://travis-ci.com/kirokou/Todolist)
+
 # README
