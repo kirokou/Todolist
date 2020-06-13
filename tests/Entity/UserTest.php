@@ -64,4 +64,22 @@ class UserTest extends KernelTestCase
     {
         self::assertEquals(null, $this->user->getId());
     }
+
+    public function testGetTask():void 
+    {
+        //test add method
+        $value = new Task();
+        $response = $this->user->addTask($value);
+
+        self::assertInstanceOf(User::class, $response);
+        self::assertCount(1, $this->user->getTasks());
+        self::assertTrue($this->user->getTasks()->contains($value));
+
+        //test remove method
+        $response = $this->user->removeTask($value);
+
+        self::assertInstanceOf(User::class, $response);
+        self::assertCount(0, $this->user->getTasks());
+        self::assertFalse($this->user->getTasks()->contains($value));
+    }
 }

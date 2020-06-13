@@ -79,6 +79,7 @@ class TaskController extends AbstractController
      */
     public function toggleTaskAction(Task $task)
     {
+        //code 606
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
