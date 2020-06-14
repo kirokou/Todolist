@@ -24,6 +24,14 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
+            <exclude>
+               <directory>src/Repository</directory>
+                <directory>src/Migrations</directory>
+                <directory>src/DataFixtures</directory>
+                <directory>src/Service</directory>
+                <file>src/Kernel.php</file>
+                <file>src/CacheKernel.php</file>
+            </exclude>
         </whitelist>
     </filter>
 
