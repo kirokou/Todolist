@@ -154,4 +154,40 @@ class TaskControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('div.alert.alert-success')->count());
     }
 
+    public function testDeleteAnonymeTaskIsSuccessByAdmin()
+    {
+        $anUser = $this->getUser('admin1'); 
+        //Authentification
+        $this->logIn($this->client, $anUser);
+        
+        //Recupération d'un task existant a modifier
+        $RecupOneTask = $this->taskRepository->findOneBy(['author' => null]);
+        $this->assertNotNull($RecupOneTask);
+
+        $crawler = $this->client->request('GET', '/tasks/'.$RecupOneTask->getId().'/delete');
+        $this->assertSame(302, $this->client->getResponse()->getStatusCode());
+        
+        static::assertResponseRedirects('/tasks');
+        $crawler = $this->client->followRedirect(); // Attention à bien récupérer le crawler mis à jour
+        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+
+        $this->assertSame(1, $crawler->filter('div.alert.alert-success')->count());
+    }
+
+    public function testDeleteAnonymeTaskIsFaillureByUser()
+    {
+        $anUser = $this->getUser('user0'); 
+        //Authentification
+        $this->logIn($this->client, $anUser);
+        
+        //Recupération d'un task sans auteur
+        $RecupOneTask = $this->taskRepository->findOneBy(['author' => null]);
+
+        $this->assertNotNull($RecupOneTask);
+
+        $crawler = $this->client->request('GET', '/tasks/'.$RecupOneTask->getId().'/delete');
+        $this->assertSame(403, $this->client->getResponse()->getStatusCode());
+        
+    }
+
 }
