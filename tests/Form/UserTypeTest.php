@@ -4,10 +4,23 @@ namespace App\Tests\Entity;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Symfony\Component\Validator\Validation;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 
 class UserTypeTest extends TypeTestCase
 {
+    
+    protected function getExtensions()
+    {
+        $validator = Validation::createValidator();
+
+        return [
+            new ValidatorExtension($validator),
+        ];
+    }
+
+
     public function testSubmitValidData()
     {
         $formData = [
