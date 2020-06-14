@@ -70,7 +70,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Utilisateur non trouvé dans la base de données.');
+            throw new CustomUserMessageAuthenticationException('Identifiants incorrects');
         }
 
         return $user;

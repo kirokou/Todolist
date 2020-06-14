@@ -51,7 +51,7 @@ class TaskTest extends KernelTestCase
 
     public function testToggle()
     {
-        self::assertEquals(false, $this->task->toggle(false));
+        self::assertEquals(false, $this->task->toggle(false)->IsDone());
     }
 
     public function testAuthor()

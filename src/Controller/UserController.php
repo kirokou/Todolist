@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,13 +14,20 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @Route("/users", name="user_list")
      */
-    public function listAction(): Response
+    public function listAction(UserRepository $userRepository): Response
     {
         return $this->render('user/list.html.twig', [
-            'users' => $this->getDoctrine()->getRepository(User::class)->findAll()
+            'users' => $userRepository->findAll()
         ]);
     }
 
@@ -33,13 +42,12 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $em = $this->getDoctrine()->getManager();
             $password = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
             $user->setRoles(array($form->get('role')->getData()));
-            $em->persist($user);
-            $em->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
 
@@ -63,7 +71,7 @@ class UserController extends AbstractController
             $user->setPassword($password);
 
             $user->setRoles(array($form->get('role')->getData()));
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
             $this->addFlash('success', "L'utilisateur a bien été modifié");
 
             return $this->redirectToRoute('user_list');
