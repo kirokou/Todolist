@@ -7,8 +7,8 @@
 # HOW INSTALL THIS PROJECT
 
 ## Required and technical environment
-- Language => PHP 7.2.14
-- Database => MySQL 5.7.25
+- Language PHP >=  7.2.30
+- Database MySQL >=  5.7.25
 - Web Server
 - Symfony
 - Composer
@@ -27,19 +27,14 @@ https://getcomposer.org/download/
 ## Step 3: download back dependencies
         composer install
 
-## Step 4: config .env
+## Step 4: config your database in file .env
+axemple: DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
 
-## Step 5: config the file config/packages/test/framework.yaml
-Add
-        liip_test_fixtures:
-        cache_db:
-                sqlite: liip_test_fixtures.              services_database_backup.sqlite
-
-## Step 6: config .env.test
+## Step 5: config .env.test
 Add:
         DATABASE_URL=sqlite:///%kernel.project_dir%/var/db_symfony_test.sqlite
 
-## Step 7: create DB
+## Step 6: create DB
 
         php bin/console d:d:c
 
@@ -90,17 +85,6 @@ Add:
         </tr>
     </tbody>
 </table>
-
-## Qualité du code
- 
-### Install PHPStan :
-
-        vendor\bin\phpstan
-
-### Install PHP_codesniffer :
-
-        vendor\bin\phpcs (analyse le code du projet)
-        vendor\bin\phpcbf (corrige  automatiquement les erreurs)
 
 ## Unit and fonctionnal Tests
 Unit tests require :
