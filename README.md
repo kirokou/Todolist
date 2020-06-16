@@ -28,32 +28,27 @@ https://getcomposer.org/download/
         composer install
 
 ## Step 4: config your database in file .env
-axemple: DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
+Exemple: DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
 
-## Step 5: config .env.test
-Add:
-        DATABASE_URL=sqlite:///%kernel.project_dir%/var/db_symfony_test.sqlite
-
-## Step 6: create DB
+## Step 5: create DB
 
         php bin/console d:d:c
 
-## Step 8: update schema (create tables)
+## Step 6: update schema (create tables)
 
         php bin/console d:s:u -f
         OR
-        php bin/console make:migration
         php bin/console doctrine:migrations:migrate
 
-## Step 9: load fixtures
+## Step 7: load fixtures
 
         php bin/console do:fi:lo  
 
-## Step 10: start server
+## Step 8: start server
 
         symfony serve
 
-## Step 11: defaults users
+## Step 9: defaults users
 <table>
     <thead>
         <tr>
@@ -103,12 +98,12 @@ To run test
 
 Access result on: todolist/web/test-coverage/index.html
 
-## How contribut
+## How to contribute
 Read contributing.md 
 
 ## Documentations:
 - Diagrammes : Todolist/documentation/UML/
-- audit qualité et performance : 
+- audit qualité et performance : Todolist/documentation/
 
 # CONTEXTE DU PROJET
 Projet 8 de mon parcours Développeur d'application PHP/Symfony chez OpenClassrooms. 
