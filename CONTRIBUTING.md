@@ -68,6 +68,15 @@ Si votre pull request est conforme aux recommandations de contribution du projet
 ## Les Best Practices
 - [Symfony Best Practices][12]
 - [Doctrine Best Practices][21]
+ 
+## Install PHPStan :
+
+    vendor\bin\phpstan
+
+## Install PHP_codesniffer :
+
+    vendor\bin\phpcs (analyse le code du projet)
+    vendor\bin\phpcbf (corrige  automatiquement les erreurs)
 
 ## Les conventions de noms
 * Utilisez des espaces de noms pour toutes vos classes et nommez-les dans UpperCamelCase
