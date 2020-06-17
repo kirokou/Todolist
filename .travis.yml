@@ -5,4 +5,3 @@ php:
 script:
   - composer install
   - php bin/phpunit
-  - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
