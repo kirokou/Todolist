@@ -102,8 +102,9 @@ Access result on: todolist/web/test-coverage/index.html
 Read contributing.md 
 
 ## Documentations:
-- Diagrammes : Todolist/documentation/UML/
-- audit qualité et performance : Todolist/documentation/
+- Diagrammes : Todolist/documentation/fagade_bourgine_01_diagrammes_UML/
+- Audit qualité et performance : Todolist/documentation/
+- guide d'authentification : Todolist/documentation/
 
 # CONTEXTE DU PROJET
 Projet 8 de mon parcours Développeur d'application PHP/Symfony chez OpenClassrooms. 
