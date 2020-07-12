@@ -16,8 +16,6 @@ class TaskControllerTest extends WebTestCase
     //liips
     use FixturesTrait;
 
-
-
     protected $client;
     protected $taskRepository;
 
